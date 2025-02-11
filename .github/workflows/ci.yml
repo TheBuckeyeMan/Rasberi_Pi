@@ -7,14 +7,17 @@ on:
       - dev
 
 env:
-  DOCKER_IMAGE_NAME: "thebuckeyeman20/smart-home:smart-home-pi"
-  ECR_IMAGE_NAME: "${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/smart-home:smart-home-pi"
+  DOCKER_IMAGE_NAME: "thebuckeyeman20/smart-home:raspberrypi"
+  ECR_IMAGE_NAME: "${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/smart-home:raspberrypi"
   BRANCH: "master"
 
 jobs:
   Docker_Build:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4 
+
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
 
