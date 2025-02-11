@@ -1,11 +1,14 @@
-# Use a lightweight Python image for Raspberry Pi
-FROM python:3.9-slim
+# Use a lightweight base image for Raspberry Pi Zero W (ARMv7)
+FROM --platform=linux/arm/v7 python:3.9-slim
 
-# Set the working directory
+# Set the working directory inside the container
 WORKDIR /app
 
-# Copy the application files
-COPY app.py .
+# Copy application files into the container
+COPY . /app
 
-# Run the application
-CMD ["python3", "app.py"]
+# Install dependencies (if needed)
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Set the default command to run the application
+CMD ["python", "app.py"]

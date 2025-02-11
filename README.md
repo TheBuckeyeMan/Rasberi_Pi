@@ -81,10 +81,6 @@ echo "Setup complete. Reboot required."
 
 bash /home/Adam1220/setup.sh &
 
-
-6. Add functionality for docker to Pull and run specified base image on boot.
-
-
-
 6. Hurray! You have now successfully automatically installed docker. It will now automatically install docker, enable docker on boot and add docker to the docker user group. We can now use docker. 
 
+# Automatically Pull and Stary Docker Container on Boot
