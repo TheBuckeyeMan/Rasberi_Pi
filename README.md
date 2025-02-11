@@ -84,3 +84,32 @@ bash /home/Adam1220/setup.sh &
 6. Hurray! You have now successfully automatically installed docker. It will now automatically install docker, enable docker on boot and add docker to the docker user group. We can now use docker. 
 
 # Automatically Pull and Stary Docker Container on Boot
+
+1. Create a Systemmd Service File `sudo nano /etc/systemd/system/smart-home.service`
+
+2. Copy paste the following into the file and save it using Controll + X then Y then Enter
+
+[Unit]
+Description=Smart Home IoT Application
+After=network.target docker.service
+Requires=docker.service
+
+[Service]
+ExecStartPre=-/usr/bin/docker pull <Dockerhub Image Path>
+ExecStart=/usr/bin/docker run --rm --name smart-home -d <Dockerhub Image Path>
+ExecStop=/usr/bin/docker stop smart-home
+Restart=always
+RestartSec=10s
+
+[Install]
+WantedBy=multi-user.target
+
+## Enable and Start the Service
+
+3. Reload Systemd to recognize the new service `sudo systemctl daemon-reload`
+
+4. Enable the service to run on boot `sudo systemctl enable smart-home.service`
+
+5. Start the service Manually for the first time `sudo systemctl start smart-home.service`
+
+6. CHeck the service status `sudo systemctl status smart-home.service`
