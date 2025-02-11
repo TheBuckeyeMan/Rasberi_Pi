@@ -111,4 +111,4 @@ jobs:
             docker system prune -af
 
             echo "Starting new container..."
-            docker run -d --name smart-home thebuckeyeman20/smart-home:raspberrypi
+            docker run -d --restart always --network host --name smart-home thebuckeyeman20/smart-home:raspberrypi
